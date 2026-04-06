@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API = (import.meta.env.VITE_API_URL || "http://localhost:3000").replace(/\/$/, "");
+const configuredApi = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_UR;
+const API = (configuredApi || "http://localhost:3000").replace(/\/$/, "");
+
+if (!import.meta.env.VITE_API_URL && import.meta.env.VITE_API_UR) {
+  console.warn("Variable VITE_API_UR détectée. Renomme-la en VITE_API_URL dans Vercel.");
+}
 
 function App() {
   const [data, setData] = useState([]);
@@ -11,7 +16,7 @@ function App() {
     axios
       .get(`${API}/properties`)
       .then((res) => setData(res.data))
-      .catch(() => setError("Impossible de charger les propriétés"));
+      .catch(() => setError(`Impossible de charger les propriétés depuis ${API}`));
   }, []);
 
   return (

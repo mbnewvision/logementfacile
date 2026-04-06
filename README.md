@@ -46,3 +46,8 @@ Pour le projet `logementfacile` sur Vercel:
 4. Lancer un déploiement Production.
 
 Si vous voyez encore l'API au lieu du frontend, c'est que vous ouvrez l'URL Railway (backend) et non l'URL Vercel (frontend).
+
+## Dépannage rapide
+
+- Vérifier le nom exact de la variable: `VITE_API_URL` (et non `VITE_API_UR`).
+- Après changement des variables Vercel, faire un **Redeploy** Production.
